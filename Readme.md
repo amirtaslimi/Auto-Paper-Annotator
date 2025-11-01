@@ -1,4 +1,4 @@
-# Semantic Paper Highlighter
+# Automatic Research Paper Highlighter and Annotator
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python Version](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
@@ -16,8 +16,8 @@ Imagine opening a dense, 20-page research paper and instantly seeing it transfor
 *   <span style="color: #40CC66">**Results & Experiments**</span> stand out in green.
 *   And so on...
 
-![Demo GIF of the Semantic Paper Highlighter in action](images/demo.gif)
-*(**Note:** You'll need to create a `demo.gif` and place it in the `images` folder for this to display)*
+![color palette](images/palette.png)
+**
 
 ## 🚀 Features
 
@@ -30,6 +30,29 @@ Imagine opening a dense, 20-page research paper and instantly seeing it transfor
 *   **Command-Line Interface:** Easy to use and integrate into scripts.
 
 ## 🤔 How It Works
+
+**Highlight key scientific sections in a PDF with one click.**  
+
+Two independent pipelines, both built on the **Strategy Pattern** so you can swap models without touching the core logic.
+
+| Edition | Model | Input | Speed | Use-Case |
+|---------|-------|-------|-------|----------|
+| **Zero-Shot NLI** (`main.py`) | `MoritzLaurer/DeBERTa-v3-base-mnli-fever-anli` (HF) | **Sentence-by-sentence** | Fast (GPU) | Light-weight, no LLM needed |
+| **LLM-ONNX** (`main_onnx_v2.py`) | **Phi-3-mini-4k-instruct** (ONNX-Runtime-GenAI) | **Contextual batch** (4-12 sentences) | Slower, richer context | Highest label quality, local inference |
+
+---
+
+## Features (both editions)
+
+* **Sentence-level extraction** – cleans citations, tables, figures.  
+* **Robust filtering** – only prose ≥30 chars, ≥70 % letters.  
+* **Color-coded highlights** – each category gets a distinct RGB stroke.  
+* **Justification tooltip** – hover the highlight → see the model’s reasoning.  
+* **Extensible** – add a new `AnnotatorStrategy` and the rest of the pipeline works unchanged.
+
+---
+
+
 
 The pipeline is straightforward but powerful:
 
@@ -145,7 +168,7 @@ While many options are available via the command line, you can still customize t
 
 ## 🤝 Contributing
 
-Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/your-username/semantic-highlighter/issues).
+Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/amirtaslimi/Auto-Paper-Annotator/issues).
 
 ## 📄 License
 
