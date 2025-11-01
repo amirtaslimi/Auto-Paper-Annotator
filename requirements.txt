@@ -1,0 +1,6 @@
+PyMuPDF
+tqdm
+tools
+onnxruntime-genai-cuda 
+transformers 
+accelerate
